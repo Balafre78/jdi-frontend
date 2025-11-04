@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { User } from "../types/api.ts";
+import type { User } from "@/types/api.ts";
 
 interface AuthState {
   user: User | null
