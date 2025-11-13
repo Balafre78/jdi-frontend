@@ -1,4 +1,13 @@
 {
+  "navbar": {
+    "home": "Accueil",
+    "lists": "Lists",
+    "about": "A propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "hello": "Bonjour, "
+  },
   "login": {
     "form": {
       "input": {

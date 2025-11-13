@@ -41,6 +41,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter, useRoute } from 'vue-router'
+import { login } from '@/api/auth.ts'
+import type { LoginRequest } from '@/types/api.ts'
 
 const email = ref('');
 const password = ref('');
@@ -48,8 +51,10 @@ const error = ref('');
 const submitting = ref(false);
 
 const { t } = useI18n();
+const router = useRouter()
+const route = useRoute()
 
-function submit() {
+async function submit() {
   error.value = '';
   if (!email.value) {
     error.value = t('login.form.error.missingEmail');
@@ -59,10 +64,24 @@ function submit() {
     return;
   }
   submitting.value = true
-  setTimeout(() => {
-    submitting.value = false;
-    console.log('Login attempt', { email: email.value, password: password.value });
-  }, 700);
+
+  const body: LoginRequest = {
+    email: email.value.trim(),
+    password: password.value
+  }
+
+  try {
+    await login(body)
+    const redirect = route.query.redirect as string || '/'
+    await router.push(redirect)
+  } catch (err: any) {
+    if (err.response?.data?.error) {
+      error.value = err.response.data.error
+    } else {
+      error.value = 'network'
+    }
+  }
+  submitting.value = false
 }
 </script>
 

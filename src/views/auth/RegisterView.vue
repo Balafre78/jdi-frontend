@@ -48,7 +48,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import type { RegisterRequest } from '@/types/api.ts'
+import { register } from '@/api/auth.ts'
 
 const firstName = ref('');
 const lastName = ref('');
@@ -60,8 +63,10 @@ const error = ref('');
 const submitting = ref(false);
 
 const { t } = useI18n();
+const router = useRouter();
+const route = useRoute();
 
-function submit() {
+async function submit() {
   error.value = '';
   if (!firstName.value) {
     error.value = t('register.form.error.requiredFirstName');
@@ -97,10 +102,26 @@ function submit() {
   }
 
   submitting.value = true;
-  setTimeout(() => {
-    submitting.value = false;
-    console.log('Register attempt', { });
-  }, 900);
+
+  const body: RegisterRequest = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    email: email.value,
+    username: username.value,
+    password: password.value
+  }
+
+  try {
+    await register(body);
+    const redirect = route.query.redirect as string || '/';
+    await router.push(redirect);
+  } catch (err: any) {
+    if (err.response?.data) {
+      error.value = err.response.data.message;
+    } else {
+      error.value = 'Network error or server unreachable';
+    }
+  }
 }
 </script>
 
