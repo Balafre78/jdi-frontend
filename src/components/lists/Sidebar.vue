@@ -17,8 +17,8 @@
         <div
           role="button"
           class="w-full text-left p-3 rounded hover:bg-white/5 hover:cursor-pointer flex justify-between items-start"
-          :class="{ 'bg-white/5': selectedId === list.id }"
-          @click="emit('select', list.id)"
+          :class="{ 'bg-white/5': selectedListId === list.id }"
+          @click="selectList(list.id)"
         >
           <div>
             <div class="text-white font-semibold">{{ list.title }}</div>
@@ -46,6 +46,7 @@ import { type Ref, ref } from 'vue'
 
 const { t } = useI18n()
 
+const selectedListId: Ref<string | null> = ref(null);
 const showArchived: Ref<boolean> = ref(false);
 
 const emit = defineEmits<{
@@ -53,9 +54,13 @@ const emit = defineEmits<{
   (e: 'create'): void
 }>()
 
-const { lists, selectedId } = defineProps<{
+function selectList(id: string): void {
+  selectedListId.value = id;
+  emit('select', selectedListId.value);
+}
+
+const { lists } = defineProps<{
   lists: Todolist[]
-  selectedId?: string
 }>()
 </script>
 

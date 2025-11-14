@@ -29,6 +29,7 @@
         <button
           v-if="isLoggedIn"
           class="inline-flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors bg-red-600/20 text-white/70 hover:bg-red-600/10 hover:cursor-pointer"
+          @click="logout"
         >
           {{ t('navbar.logout') }}
         </button>
@@ -44,18 +45,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type ComputedRef } from 'vue'
-import { useRoute, type RouteLocationRaw } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { useAuthStore } from '@/stores/auth.ts'
-import type { User } from '@/types'
+import { computed, type ComputedRef } from 'vue';
+import { useRoute, type RouteLocationRaw } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { useAuthStore } from '@/stores/auth.ts';
+import type { User } from '@/types';
+import router from '@/router';
 
-const { t } = useI18n()
-const route = useRoute()
-const auth = useAuthStore()
+const { t } = useI18n();
+const route = useRoute();
+const auth = useAuthStore();
 
 type NavTo = RouteLocationRaw | undefined
-const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null
+const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null;
 
 const tabs = [
   { label: t('navbar.home'), to: { name: 'home' } },
@@ -63,17 +65,22 @@ const tabs = [
   { label: t('navbar.about'), to: { name: 'about' } },
 ]
 
-const isLoggedIn: ComputedRef<boolean> = computed(() => auth.isLoggedIn)
-const user: ComputedRef<User | null> = computed(() => auth.user)
+const isLoggedIn: ComputedRef<boolean> = computed(() => auth.isLoggedIn);
+const user: ComputedRef<User | null> = computed(() => auth.user);
 
 const isActive = (to: NavTo) => {
-  if (!to) return false
-  if (typeof to === 'string') return route.path === to
+  if (!to) return false;
+  if (typeof to === 'string') return route.path === to;
   if (isObject(to)) {
-    if ('name' in to && to.name != null) return route.name === (to.name as string | symbol)
-    if ('path' in to && to.path != null) return route.path === String(to.path)
+    if ('name' in to && to.name != null) return route.name === (to.name as string | symbol);
+    if ('path' in to && to.path != null) return route.path === String(to.path);
   }
-  return false
+  return false;
+}
+
+function logout(): void {
+  auth.logout();
+  router.push({ name: 'home' });
 }
 </script>
 

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useAuthStore } from '@/stores/auth'
+//import { useRouter } from 'vue-router'
 import router from '@/router'
 
 const api = axios.create({
@@ -18,9 +19,10 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use((res) => res, (err) => {
     const auth = useAuthStore();
+    //const router = useRouter();
     if (err.response?.status === 401 && auth.isLoggedIn) {
         auth.logout();
-        router.push('/login');
+        router.push({ name: 'login' });
     }
     return Promise.reject(err);
 });

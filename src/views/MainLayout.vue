@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar.vue'
 <template>
   <div class="h-screen w-full background flex flex-col p-4">
     <Navbar/>
-    <main class="mt-4 grow flex-1 min-h-0 overflow-auto border-1 border-white border-dashed">
+    <main class="mt-4 grow flex-1 min-h-0 overflow-auto"> <!-- border-1 border-white border-dashed -->
       <RouterView/>
     </main>
   </div>
