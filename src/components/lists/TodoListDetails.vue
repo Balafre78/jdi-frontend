@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 p-6 h-fit overflow-auto">
+  <div class="flex-1 p-6 min-h-0 overflow-auto">
     <div v-if="!list" class="text-gray-300">Select a list to see details</div>
     <div v-else class="space-y-4">
       <div class="flex items-center justify-between">
@@ -55,4 +55,3 @@ div::-webkit-scrollbar-thumb {
   border-radius: 4px;
 }
 </style>
-

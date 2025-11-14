@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex flex-row h-full">
     <TodoListSidebar
       :lists="lists"
       :selectedId="selectedListId"
@@ -76,7 +76,3 @@ function archiveList(id: string) {
   if (selectedListId.value === id) selectedListId.value = null
 }
 </script>
-
-<style scoped>
-.h-full { height: 100vh; }
-</style>

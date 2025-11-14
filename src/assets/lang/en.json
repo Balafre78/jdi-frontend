@@ -88,5 +88,11 @@
         "passwordTooShort": "Password must be at least 6 characters."
       }
     }
+  },
+  "lists": {
+    "sidebar": {
+      "createList": "Create new",
+      "showArchived": "Show archived"
+    }
   }
 }
