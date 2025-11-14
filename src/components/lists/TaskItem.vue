@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Task } from '@/types/api'
+import { type Task } from '@/types'
 
 const { task } = defineProps<{ task: Task }>()
 </script>

@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import TaskItem from './TaskItem.vue'
-import { type Todolist, type Task } from '@/types/api'
+import { type Todolist, type Task } from '@/types'
 
 const props = defineProps<{
   list?: Todolist | null

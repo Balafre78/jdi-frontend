@@ -1,37 +1,3 @@
-<script setup lang="ts">
-import { useRoute, type RouteLocationRaw } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { useAuthStore } from '@/stores/auth.ts'
-import { computed, type ComputedRef } from 'vue'
-import type { User } from '@/types/api.ts'
-
-const { t } = useI18n()
-const route = useRoute()
-const auth = useAuthStore()
-
-type NavTo = RouteLocationRaw | undefined
-const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null
-
-const tabs = [
-  { label: t('navbar.home'), to: { name: 'home' } },
-  { label: t('navbar.lists'), to: { name: 'lists' } },
-  { label: t('navbar.about'), to: { name: 'about' } },
-]
-
-const isLoggedIn: ComputedRef<boolean> = computed(() => auth.isLoggedIn)
-const user: ComputedRef<User | null> = computed(() => auth.user)
-
-const isActive = (to: NavTo) => {
-  if (!to) return false
-  if (typeof to === 'string') return route.path === to
-  if (isObject(to)) {
-    if ('name' in to && to.name != null) return route.name === (to.name as string | symbol)
-    if ('path' in to && to.path != null) return route.path === String(to.path)
-  }
-  return false
-}
-</script>
-
 <template>
   <nav
     class="w-full h-fit backdrop-blur-md border border-white/50 bg-white/5 flex rounded-xl shadow-lg p-4 items-center justify-between"
@@ -76,5 +42,39 @@ const isActive = (to: NavTo) => {
     </ul>
   </nav>
 </template>
+
+<script setup lang="ts">
+import { computed, type ComputedRef } from 'vue'
+import { useRoute, type RouteLocationRaw } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useAuthStore } from '@/stores/auth.ts'
+import type { User } from '@/types'
+
+const { t } = useI18n()
+const route = useRoute()
+const auth = useAuthStore()
+
+type NavTo = RouteLocationRaw | undefined
+const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null
+
+const tabs = [
+  { label: t('navbar.home'), to: { name: 'home' } },
+  { label: t('navbar.lists'), to: { name: 'lists' } },
+  { label: t('navbar.about'), to: { name: 'about' } },
+]
+
+const isLoggedIn: ComputedRef<boolean> = computed(() => auth.isLoggedIn)
+const user: ComputedRef<User | null> = computed(() => auth.user)
+
+const isActive = (to: NavTo) => {
+  if (!to) return false
+  if (typeof to === 'string') return route.path === to
+  if (isObject(to)) {
+    if ('name' in to && to.name != null) return route.name === (to.name as string | symbol)
+    if ('path' in to && to.path != null) return route.path === String(to.path)
+  }
+  return false
+}
+</script>
 
 <style scoped></style>

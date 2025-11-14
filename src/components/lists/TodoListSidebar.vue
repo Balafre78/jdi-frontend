@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Todolist } from '@/types/api'
+import type { Todolist } from '@/types'
 
 const emit = defineEmits<{
   (e: 'select', id: string): void

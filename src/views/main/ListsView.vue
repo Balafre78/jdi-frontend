@@ -20,7 +20,7 @@
 import { ref, computed } from 'vue'
 import TodoListSidebar from '@/components/lists/TodoListSidebar.vue'
 import TodoListDetails from '@/components/lists/TodoListDetails.vue'
-import type { Todolist, Task } from '@/types/api'
+import type { Todolist, Task } from '@/types'
 
 // mock data
 const lists = ref<Todolist[]>([

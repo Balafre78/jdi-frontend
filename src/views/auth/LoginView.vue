@@ -43,7 +43,7 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter, useRoute } from 'vue-router'
 import { login } from '@/api/auth.ts'
-import type { LoginRequest } from '@/types/api.ts'
+import type { LoginRequest } from '@/types'
 
 const email = ref('');
 const password = ref('');

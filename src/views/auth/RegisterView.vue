@@ -50,7 +50,7 @@
 import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import type { RegisterRequest } from '@/types/api.ts'
+import type { RegisterRequest } from '@/types'
 import { register } from '@/api/auth.ts'
 
 const firstName = ref('');
