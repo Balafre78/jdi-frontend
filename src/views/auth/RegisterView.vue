@@ -10,89 +10,63 @@
       </h2>
       <div class="space-y-4">
         <div class="flex space-x-3">
-          <div class="w-1/2">
-            <label for="firstName" class="sr-only">{{ t('register.form.input.name.label') }}</label>
-            <input
-              id="firstName"
-              name="firstName"
-              v-model="firstName"
-              type="text"
-              autocomplete="firstName"
-              :placeholder="t('register.form.input.firstName.placeholder')"
-              autofocus
-              class="w-full rounded-full px-4 py-3 bg-transparent border border-white placeholder-white/80 text-white caret-white focus:outline-none focus:ring-1 focus:ring-white focus:border-white"
-            />
-          </div>
-          <div class="w-1/2">
-            <label for="lastName" class="sr-only">{{
-              t('register.form.input.lastName.label')
-            }}</label>
-            <input
-              id="lastName"
-              name="lastName"
-              v-model="lastName"
-              type="text"
-              autocomplete="lastName"
-              :placeholder="t('register.form.input.lastName.placeholder')"
-              autofocus
-              class="w-full rounded-full px-4 py-3 bg-transparent border border-white placeholder-white/80 text-white caret-white focus:outline-none focus:ring-1 focus:ring-white focus:border-white"
-            />
-          </div>
-        </div>
-        <div>
-          <label for="username" class="sr-only">{{
-            t('register.form.input.username.label')
-          }}</label>
-          <input
-            id="username"
-            name="username"
-            v-model="username"
+          <InputField
+            id="firstName"
+            v-model="firstName"
             type="text"
-            autocomplete="username"
-            :placeholder="t('register.form.input.username.placeholder')"
-            class="w-full rounded-full px-4 py-3 bg-transparent border border-white placeholder-white/80 text-white caret-white focus:outline-none focus:ring-1 focus:ring-white focus:border-white"
+            autocomplete="firstName"
+            class="w-1/2"
+            :label="t('register.form.input.firstName.label')"
+            :placeholder="t('register.form.input.firstName.placeholder')"
+            :show-label="false"
+          />
+          <InputField
+            id="lastName"
+            v-model="lastName"
+            type="text"
+            autocomplete="lastName"
+            class="w-1/2"
+            :label="t('register.form.input.lastName.label')"
+            :placeholder="t('register.form.input.lastName.placeholder')"
+            :show-label="false"
           />
         </div>
-        <div>
-          <label for="email" class="sr-only">{{ t('register.form.input.email.label') }}</label>
-          <input
-            id="email"
-            name="email"
-            v-model="email"
-            type="email"
-            autocomplete="email"
-            :placeholder="t('register.form.input.email.placeholder')"
-            class="w-full rounded-full px-4 py-3 bg-transparent border border-white placeholder-white/80 text-white caret-white focus:outline-none focus:ring-1 focus:ring-white focus:border-white"
-          />
-        </div>
-        <div>
-          <label for="password" class="sr-only">{{
-            t('register.form.input.password.label')
-          }}</label>
-          <input
-            id="password"
-            name="password"
-            v-model="password"
-            type="password"
-            autocomplete="new-password"
-            :placeholder="t('register.form.input.password.placeholder')"
-            class="w-full rounded-full px-4 py-3 bg-transparent border border-white placeholder-white/80 text-white caret-white focus:outline-none focus:ring-1 focus:ring-white focus:border-white"
-          />
-        </div>
-        <div>
-          <label for="confirm" class="sr-only">{{
-            t('register.form.input.confirmPassword.label')
-          }}</label>
-          <input
-            id="confirm"
-            name="confirm"
-            v-model="confirmPassword"
-            type="password"
-            autocomplete="new-password"
-            :placeholder="t('register.form.input.confirmPassword.placeholder')"
-            class="w-full rounded-full px-4 py-3 bg-transparent border border-white placeholder-white/80 text-white caret-white focus:outline-none focus:ring-1 focus:ring-white focus:border-white"
-          />
-        </div>
+        <InputField
+          id="username"
+          v-model="username"
+          type="text"
+          autocomplete="username"
+          :label="t('register.form.input.username.label')"
+          :placeholder="t('register.form.input.username.placeholder')"
+          :show-label="false"
+        />
+        <InputField
+          id="email"
+          v-model="email"
+          type="email"
+          autocomplete="email"
+          :label="t('register.form.input.email.label')"
+          :placeholder="t('register.form.input.email.placeholder')"
+          :show-label="false"
+        />
+        <InputField
+          id="password"
+          v-model="password"
+          type="password"
+          autocomplete="new-password"
+          :label="t('register.form.input.password.label')"
+          :placeholder="t('register.form.input.password.placeholder')"
+          :show-label="false"
+        />
+        <InputField
+          id="confirmPassword"
+          v-model="confirmPassword"
+          type="password"
+          autocomplete="new-password"
+          :label="t('register.form.input.confirmPassword.label')"
+          :placeholder="t('register.form.input.confirmPassword.placeholder')"
+          :show-label="false"
+        />
         <div>
           <button
             @click="submit"
@@ -108,8 +82,8 @@
           <p class="text-sm text-white">
             {{ t('register.form.text.haveAccount') }}
             <router-link to="/login" class="font-medium underline hover:text-indigo-200">{{
-              t('register.form.link.login')
-            }}</router-link>
+                t('register.form.link.login')
+              }}</router-link>
           </p>
         </div>
         <p
@@ -131,6 +105,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import type { RegisterRequest } from '@/types'
 import { register } from '@/api/auth.ts'
+import InputField from '@/components/common/InputField.vue'
 
 const firstName: Ref<string> = ref('')
 const lastName: Ref<string>  = ref('')

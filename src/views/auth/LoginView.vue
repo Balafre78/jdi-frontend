@@ -9,42 +9,34 @@
       </h2>
 
       <div class="space-y-4">
-        <div>
-          <label for="email" class="sr-only">{{ t('login.form.input.email.label') }}</label>
-          <input
-            id="email"
-            name="email"
-            v-model="email"
-            type="email"
-            autocomplete="email"
-            :placeholder="t('login.form.input.email.placeholder')"
-            autofocus
-            class="w-full rounded-full px-4 py-3 bg-transparent border border-white placeholder-white/80 text-white caret-white focus:outline-none focus:ring-1 focus:ring-white focus:border-white"
-          />
-        </div>
-
-        <div>
-          <label for="password" class="sr-only">{{ t('login.form.input.password.label') }}</label>
-          <input
-            id="password"
-            name="password"
-            v-model="password"
-            type="password"
-            autocomplete="current-password"
-            :placeholder="t('login.form.input.password.placeholder')"
-            class="w-full rounded-full px-4 py-3 bg-transparent border border-white placeholder-white/80 text-white caret-white focus:outline-none focus:ring-1 focus:ring-white focus:border-white"
-          />
-        </div>
+        <InputField
+          id="email"
+          v-model="email"
+          type="email"
+          autocomplete="email"
+          :label="t('login.form.input.email.label')"
+          :placeholder="t('login.form.input.email.placeholder')"
+          :show-label="false"
+        />
+        <InputField
+          id="password"
+          v-model="password"
+          type="password"
+          autocomplete="current-password"
+          :label="t('login.form.input.password.label')"
+          :placeholder="t('login.form.input.password.placeholder')"
+          :show-label="false"
+        />
 
         <div class="flex items-center justify-between text-sm text-white">
           <label class="flex items-center"
-            ><input type="checkbox" class="mr-2" name="remember" />{{
+          ><input type="checkbox" class="mr-2" name="remember" />{{
               t('login.form.link.rememberPassword')
             }}</label
           >
           <RouterLink to="/forgot-password" class="font-medium underline hover:text-indigo-200">{{
-            t('login.form.link.forgotPassword')
-          }}</RouterLink>
+              t('login.form.link.forgotPassword')
+            }}</RouterLink>
         </div>
 
         <div>
@@ -63,8 +55,8 @@
           <p class="text-sm text-white">
             {{ t('login.form.text.noAccount') }}
             <RouterLink to="/register" class="font-medium underline hover:text-indigo-200">{{
-              t('login.form.link.register')
-            }}</RouterLink
+                t('login.form.link.register')
+              }}</RouterLink
             >.
           </p>
         </div>
@@ -88,6 +80,7 @@ import { useI18n } from 'vue-i18n';
 import { useRouter, useRoute } from 'vue-router';
 import { login } from '@/api/auth.ts';
 import type { LoginRequest } from '@/types';
+import InputField from '@/components/common/InputField.vue'
 
 const email: Ref<string> = ref('');
 const password: Ref<string>  = ref('');

@@ -107,7 +107,7 @@
         },
         "button": {
           "create": "Créer",
-          "saving": "Sauvegarde..."
+          "creating": "Création..."
         },
         "text": {
           "title": "Créer une nouvelle liste"
