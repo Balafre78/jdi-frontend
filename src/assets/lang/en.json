@@ -93,6 +93,30 @@
     "sidebar": {
       "createList": "Create new",
       "showArchived": "Show archived"
+    },
+    "form": {
+      "create": {
+        "input": {
+          "title": {
+            "label": "List title",
+            "placeholder": "Food shopping"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Weekly groceries and essentials"
+          }
+        },
+        "button": {
+          "create": "Create List",
+          "saving": "Saving..."
+        },
+        "text": {
+          "title": "Create New List"
+        },
+        "error": {
+          "requiredName": "List name is required."
+        }
+      }
     }
   }
 }

@@ -87,5 +87,35 @@
         "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères."
       }
     }
+  },
+  "lists": {
+    "sidebar": {
+      "createList": "Créer une liste",
+      "showArchived": "Afficher les archivées"
+    },
+    "form": {
+      "create": {
+        "input": {
+          "title": {
+            "label": "Titre de la liste",
+            "placeholder": "Course de nourriture"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Courses hebdomadaires et articles divers"
+          }
+        },
+        "button": {
+          "create": "Créer",
+          "saving": "Sauvegarde..."
+        },
+        "text": {
+          "title": "Créer une nouvelle liste"
+        },
+        "error": {
+          "requiredName": "Le nom de la liste est requis."
+        }
+      }
+    }
   }
 }

@@ -4,12 +4,9 @@
   >
     <div class="flex flex-row justify-between items-center mb-3 flex-none">
       <h2 class="text-white font-bold">Todolists</h2>
-      <button
-        @click="emit('create')"
-        class="text-sm text-blue-400 hover:cursor-pointer hover:underline"
-      >
-        New
-      </button>
+      <CreateModal @created="emit('update')">
+        <button class="text-sm text-blue-400 hover:cursor-pointer hover:underline">New</button>
+      </CreateModal>
     </div>
 
     <ul class="space-y-2 overflow-y-auto flex-1 min-h-0 flex flex-col">
@@ -40,6 +37,7 @@
 </template>
 
 <script setup lang="ts">
+import CreateModal from '@/components/lists/CreateModal.vue'
 import type { Todolist } from '@/types'
 import { useI18n } from 'vue-i18n'
 import { type Ref, ref } from 'vue'
@@ -51,7 +49,7 @@ const showArchived: Ref<boolean> = ref(false);
 
 const emit = defineEmits<{
   (e: 'select', id: string): void
-  (e: 'create'): void
+  (e: 'update'): void
 }>()
 
 function selectList(id: string): void {

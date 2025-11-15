@@ -3,7 +3,7 @@
     <ListSidebar
       :lists="lists"
       @select="selectList"
-      @create="createList"
+      @update="fetchLists"
     />
     <ListDetails
       :list="selectedList"
@@ -32,13 +32,6 @@ async function fetchLists() {
 async function selectList(id: string) {
   selectedListId.value = id;
   selectedTasks.value = await getTasks(id);
-}
-
-async function createList() {
-  /*const id = String(Date.now())
-  const newList: Todolist = { id, title: 'New list', description: '', archived: false }
-  lists.value.unshift(newList)
-  tasksByList.value[id] = []*/
 }
 
 function archiveList(id: string) {
