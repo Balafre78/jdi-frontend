@@ -32,7 +32,6 @@ import TextField from '@/components/common/TextField.vue'
 import type { CreateTodolistRequest } from '@/types'
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
-import { createTodolist } from '@/api/todolist.ts';
 
 const { t } = useI18n();
 
@@ -41,7 +40,7 @@ const title = ref('');
 const description = ref('');
 
 const emit = defineEmits<{
-  (e: 'created'): void
+  (e: 'create', body: CreateTodolistRequest): void
 }>()
 
 async function submit() {
@@ -52,13 +51,9 @@ async function submit() {
     title: title.value.trim(),
     description: description.value.trim()
   };
-  try {
-    await createTodolist(body);
-    title.value = '';
-    description.value = '';
-    modal.value.close();
-    emit('created');
-  } catch {
-  }
+  title.value = '';
+  description.value = '';
+  modal.value.close();
+  emit('create', body);
 }
 </script>

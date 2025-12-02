@@ -1,70 +1,82 @@
 // -------------------- Auth --------------------
 export interface LoginRequest {
-    email: string
-    password: string
+  email: string
+  password: string
 }
 
 export interface RegisterRequest {
-    username: string
-    email: string
-    password: string
-    firstName: string
-    lastName: string
+  username: string
+  email: string
+  password: string
+  firstName: string
+  lastName: string
 }
 
 export interface AuthResponse {
-    message: string
-    user: User
-    token: string
-    expiresIn: number
+  message: string
+  user: User
+  token: string
+  expiresIn: number
 }
 
 // -------------------- User --------------------
 export interface User {
-    id: string
-    username: string
-    email: string
-    firstName: string
-    lastName: string
+  id: string
+  username: string
+  email: string
+  firstName: string
+  lastName: string
 }
 
 // -------------------- Todolist --------------------
 export interface Todolist {
-    id: string
-    title: string
-    description: string
-    archived: boolean
+  id: string
+  title: string
+  description: string
+  archived: boolean
 }
 
 export interface CreateTodolistRequest {
-    title: string
-    description?: string
+  title: string
+  description?: string
 }
 
 export interface UpdateTodolistRequest {
-    title?: string
-    description?: string
-    archived?: boolean
+  title?: string
+  description?: string
+  archived?: boolean
+}
+
+export interface UpdateTodolistResponse {
+  message: string
 }
 
 // -------------------- Task --------------------
-export type TaskStatus = 'todo' | 'doing' | 'done';
+export enum TaskStatus {
+  TODO = 'todo',
+  DOING = 'doing',
+  DONE = 'done'
+}
 
 export interface Task {
-    id: string
-    name: string
-    description: string
-    status: TaskStatus
+  id: string
+  name: string
+  description: string
+  status: TaskStatus
 }
 
 export interface CreateTaskRequest {
-    name: string
-    description?: string
-    status?: TaskStatus
+  name: string
+  description?: string
+  status?: TaskStatus
 }
 
 export interface UpdateTaskRequest {
-    name?: string
-    description?: boolean
-    status?: TaskStatus
+  name?: string
+  description?: string
+  status?: TaskStatus
+}
+
+export interface UpdateTaskResponse {
+  message: string
 }

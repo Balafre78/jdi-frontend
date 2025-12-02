@@ -4,7 +4,7 @@
   >
     <div class="flex flex-row justify-between items-center mb-3 flex-none">
       <h2 class="text-white font-bold">Todolists</h2>
-      <CreateModal @created="emit('update')">
+      <CreateModal @create="onCreateList">
         <button class="text-sm text-blue-400 hover:cursor-pointer hover:underline">New</button>
       </CreateModal>
     </div>
@@ -37,15 +37,16 @@
 </template>
 
 <script setup lang="ts">
-import CreateModal from '@/components/lists/CreateModal.vue'
-import type { Todolist } from '@/types'
+import CreateModal from '@/components/list/CreateModal.vue'
+import type { CreateTodolistRequest, Todolist } from '@/types'
 import { useI18n } from 'vue-i18n'
 import { type Ref, ref } from 'vue'
+import { createTodolist } from '@/api/todolist.ts'
 
 const { t } = useI18n()
 
-const selectedListId: Ref<string | null> = ref(null);
-const showArchived: Ref<boolean> = ref(false);
+const selectedListId: Ref<string | null> = ref(null)
+const showArchived: Ref<boolean> = ref(false)
 
 const emit = defineEmits<{
   (e: 'select', id: string): void
@@ -53,8 +54,18 @@ const emit = defineEmits<{
 }>()
 
 function selectList(id: string): void {
-  selectedListId.value = id;
-  emit('select', selectedListId.value);
+  selectedListId.value = id
+  emit('select', selectedListId.value)
+}
+
+async function onCreateList(body: CreateTodolistRequest) {
+  try {
+    await createTodolist(body)
+    emit('update');
+  } catch (e) {
+    console.error('Error creating todolist:', e)
+    return
+  }
 }
 
 const { lists } = defineProps<{
