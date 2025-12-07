@@ -10,7 +10,7 @@
     </div>
 
     <ul class="space-y-2 overflow-y-auto flex-1 min-h-0 flex flex-col">
-      <li v-for="list in lists" :key="list.id">
+      <li v-for="list in todolistStore.lists" :key="list.id">
         <div
           role="button"
           class="w-full text-left p-3 rounded hover:bg-white/5 hover:cursor-pointer flex justify-between items-start"
@@ -27,50 +27,47 @@
     </ul>
 
     <div class="flex flex-row justify-between items-center mt-3 flex-none">
-      <span class="text-sm text-gray-300">{{ lists.length }} lists</span>
+      <span class="text-sm text-gray-300">{{ todolistStore.lists.length }} lists</span>
       <label class="flex items-center text-gray-300 gap-2"
-        >{{ t('lists.sidebar.showArchived')
+      >{{ t('lists.sidebar.showArchived')
         }}<input type="checkbox" class="mr-2" name="showArchived" v-model="showArchived"
-      /></label>
+        /></label>
     </div>
   </aside>
 </template>
 
 <script setup lang="ts">
 import CreateModal from '@/components/list/CreateModal.vue'
-import type { CreateTodolistRequest, Todolist } from '@/types'
+import type { CreateTodolistRequest } from '@/types'
 import { useI18n } from 'vue-i18n'
 import { type Ref, ref } from 'vue'
-import { createTodolist } from '@/api/todolist.ts'
+import { useTodolistStore } from '@/stores/todolist.ts'
 
-const { t } = useI18n()
-
-const selectedListId: Ref<string | null> = ref(null)
-const showArchived: Ref<boolean> = ref(false)
-
-const emit = defineEmits<{
-  (e: 'select', id: string): void
-  (e: 'update'): void
+const { selectedListId } = defineProps<{
+  selectedListId: string | null
 }>()
 
-function selectList(id: string): void {
-  selectedListId.value = id
-  emit('select', selectedListId.value)
+const emit = defineEmits<{
+  (e: 'update:selectedListId', value: string): void
+}>()
+
+const { t } = useI18n()
+const todolistStore = useTodolistStore()
+
+const showArchived: Ref<boolean> = ref(false)
+
+async function selectList(id: string) {
+  emit('update:selectedListId', id)
 }
 
 async function onCreateList(body: CreateTodolistRequest) {
   try {
-    await createTodolist(body)
-    emit('update');
+    await todolistStore.createList(body)
   } catch (e) {
     console.error('Error creating todolist:', e)
     return
   }
 }
-
-const { lists } = defineProps<{
-  lists: Todolist[]
-}>()
 </script>
 
 <style scoped>

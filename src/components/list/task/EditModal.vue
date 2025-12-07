@@ -46,7 +46,7 @@ const name = ref(task.name)
 const description = ref(task.description)
 
 const emit = defineEmits<{
-  (e: 'update', taskId: string, body: UpdateTaskRequest): void
+  (e: 'update', body: UpdateTaskRequest): void
 }>()
 
 async function submit() {
@@ -57,6 +57,6 @@ async function submit() {
   name.value = ''
   description.value = ''
   modal.value.close()
-  emit('update', task.id, body)
+  emit('update', body)
 }
 </script>

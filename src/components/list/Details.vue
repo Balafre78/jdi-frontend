@@ -5,8 +5,8 @@
     <div class="space-y-4">
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-2xl font-bold text-white">{{ list.title }}</h1>
-          <p class="text-gray-300">{{ list.description }}</p>
+          <h1 class="text-2xl font-bold text-white">{{ selectedList.title }}</h1>
+          <p class="text-gray-300">{{ selectedList.description }}</p>
         </div>
         <div>
           <button class="px-3 py-1 bg-red-600 text-white rounded">Archive</button>
@@ -18,8 +18,8 @@
 
       <div>
         <div class="mt-2 space-y-2">
-          <TaskItem v-for="task in tasks" :key="task.id" :task="task" />
-          <div v-if="tasks.length === 0" class="text-gray-400">No tasks yet</div>
+          <TaskItem v-for="task in tasks" :key="task.id" :task="task" :selectedListId="selectedListId" />
+          <div v-if="tasks && tasks.length === 0" class="text-gray-400">No tasks yet</div>
         </div>
       </div>
     </div>
@@ -29,27 +29,39 @@
 <script setup lang="ts">
 import TaskItem from '@/components/list/task/Item.vue'
 import TaskAddModal from '@/components/list/task/AddModal.vue'
-import { type Todolist, type Task, type CreateTaskRequest, type UpdateTaskRequest } from '@/types'
-import { createTask, updateTask } from '@/api/todolist.ts'
+import type { CreateTaskRequest } from '@/types'
+import { useTodolistStore } from '@/stores/todolist.ts'
+import { computed, onMounted, watch } from 'vue'
 
-const { list, tasks } = defineProps<{
-  list: Todolist
-  tasks: Task[]
+const todolistStore = useTodolistStore()
+
+const { selectedListId } = defineProps<{
+  selectedListId: string
 }>()
 
-const emit = defineEmits<{
-  (e: 'update'): void
-}>()
+const selectedList = computed(() => {
+  return todolistStore.lists.find((list) => list.id === selectedListId)!
+})
 
-async function onCreateTask(task: CreateTaskRequest) {
+const tasks = computed(() => {
+  return todolistStore.tasksByList[selectedListId]
+})
+
+async function onCreateTask(data: CreateTaskRequest) {
   try {
-    await createTask(list.id, task)
-    emit('update')
+    await todolistStore.addTask(selectedListId, data)
   } catch (e) {
     console.error('Error creating task:', e)
   }
 }
 
+onMounted(async () => {
+  await todolistStore.fetchTasks(selectedListId)
+})
+
+watch(() => selectedListId, async (newListId: string) => {
+  await todolistStore.fetchTasks(newListId)
+})
 </script>
 
 <style scoped>

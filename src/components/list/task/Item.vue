@@ -6,28 +6,36 @@
       <h3 class="text-lg text-white font-semibold">{{ task.name }}</h3>
       <p class="text-gray-400">{{ task.description }}</p>
     </div>
-    <div>
-      <EditModal :task="task" @update="emit('update')" />
-      <StatusSwitcher
-        :status="status"
-        @update:status="(newStatus) => (status = newStatus)"
-        class="min-h-full"
-      />
+    <div class="flex flex-row items-center">
+      <EditTaskModal :task="task" @update="onTaskUpdate">
+        <button class="text-sm text-blue-400 hover:cursor-pointer hover:underline mr-4">
+          Edit
+        </button>
+      </EditTaskModal>
+      <StatusSwitcher :status="status" @update:status="updateStatus" class="min-h-full" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { type Task, type UpdateTaskRequest } from '@/types'
+import type { Task, TaskStatus, UpdateTaskRequest } from '@/types'
 import StatusSwitcher from '@/components/list/task/StatusSwitcher.vue'
 import { ref } from 'vue'
-import EditModal from '@/components/list/task/EditModal.vue'
-import { updateTask } from '@/api/todolist.ts'
+import EditTaskModal from '@/components/list/task/EditModal.vue'
+import { useTodolistStore } from '@/stores/todolist.ts'
 
-const { task } = defineProps<{ task: Task }>()
+const todolistStore = useTodolistStore()
+
+const { task, selectedListId } = defineProps<{ task: Task; selectedListId: string }>()
+
 const status = ref(task.status)
-const emit = defineEmits<{
-  (e: 'update'): void
-}>()
 
+async function updateStatus(newStatus: TaskStatus) {
+  status.value = newStatus
+  await todolistStore.editTask(selectedListId, task.id, { status: newStatus })
+}
+
+async function onTaskUpdate(newTask: UpdateTaskRequest) {
+  await todolistStore.editTask(selectedListId, task.id, newTask)
+}
 </script>

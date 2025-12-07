@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia'
 import type { User } from "@/types";
 
-interface AuthState {
+interface AuthStore {
   user: User | null
   token: string | null
   expires: number | null // timestamp in ms
 }
 
 export const useAuthStore = defineStore('auth', {
-  state: (): AuthState => ({
+  state: (): AuthStore => ({
     user: null,
     token: null,
     expires: null
@@ -48,7 +48,7 @@ export const useAuthStore = defineStore('auth', {
       const raw = localStorage.getItem('auth')
       if (raw) {
         try {
-          const parsed = JSON.parse(raw) as AuthState
+          const parsed = JSON.parse(raw) as AuthStore
           this.user = parsed.user
           this.token = parsed.token
           this.expires = parsed.expires

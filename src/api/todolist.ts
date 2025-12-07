@@ -16,18 +16,18 @@ export async function getTodolists(): Promise<Todolist[]> {
 }
 
 export async function createTodolist(data: CreateTodolistRequest): Promise<UpdateTodolistResponse> {
-    const res = await api.post<UpdateTodolistResponse>('/todolist', data);
-    return res.data;
+  const res = await api.post<UpdateTodolistResponse>('/todolist', data);
+  return res.data;
 }
 
 export async function deleteTodolist(todoId: string): Promise<UpdateTodolistResponse> {
-    const res = await api.delete<UpdateTodolistResponse>(`/todolist/${todoId}`);
-    return res.data;
+  const res = await api.delete<UpdateTodolistResponse>(`/todolist/${todoId}`);
+  return res.data;
 }
 
 export async function updateTodolist(todoId: string, data: UpdateTodolistRequest): Promise<UpdateTodolistResponse> {
-    const res = await api.put<UpdateTodolistResponse>(`/todolist/${todoId}`, data);
-    return res.data;
+  const res = await api.patch<UpdateTodolistResponse>(`/todolist/${todoId}`, data);
+  return res.data;
 }
 
 export async function getTasks(todoId: string): Promise<Task[]> {
@@ -40,12 +40,12 @@ export async function createTask(todoId: string, data: CreateTaskRequest): Promi
   return res.data;
 }
 
-export async function updateTask(todoId: string, data: UpdateTaskRequest): Promise<UpdateTaskResponse> {
-  const res = await api.put<UpdateTaskResponse>(`/todolist/task/${todoId}`, data);
+export async function updateTask(todoId: string, taskId: string, data: UpdateTaskRequest): Promise<UpdateTaskResponse> {
+  const res = await api.patch<UpdateTaskResponse>(`/todolist/${todoId}/task/${taskId}`, data);
   return res.data;
 }
 
-export async function deleteTask(todoId: string): Promise<UpdateTaskResponse> {
-  const res = await api.delete<UpdateTaskResponse>(`/todolist/task/${todoId}`);
+export async function deleteTask(todoId: string, taskId: string): Promise<UpdateTaskResponse> {
+  const res = await api.delete<UpdateTaskResponse>(`/todolist/${todoId}/task/${taskId}`);
   return res.data;
 }
