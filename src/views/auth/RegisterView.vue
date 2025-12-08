@@ -177,5 +177,6 @@ async function submit() {
       error.value = 'Network error or server unreachable';
     }
   }
+  submitting.value = false;
 }
 </script>
