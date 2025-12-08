@@ -1,6 +1,7 @@
 {
   "navbar": {
     "home": "Home",
+    "user": "User",
     "lists": "Lists",
     "about": "About",
     "contact": "Contact",
@@ -90,10 +91,6 @@
     }
   },
   "lists": {
-    "sidebar": {
-      "createList": "Create new",
-      "showArchived": "Show archived"
-    },
     "form": {
       "create": {
         "input": {
@@ -107,8 +104,7 @@
           }
         },
         "button": {
-          "create": "Create List",
-          "creating": "Creating..."
+          "create": "Create List"
         },
         "text": {
           "title": "Create New List"
@@ -116,7 +112,87 @@
         "error": {
           "requiredName": "List name is required."
         }
+      },
+      "addTask": {
+        "input": {
+          "name": {
+            "label": "Task name",
+            "placeholder": "Buy milk and eggs"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "1 litre of milk, a dozen eggs"
+          }
+        },
+        "button": {
+          "add": "Add Task"
+        },
+        "text": {
+          "title": "Add New Task"
+        },
+        "error": {
+          "requiredName": "Task name is required."
+        }
+      },
+      "editTask": {
+        "input": {
+          "name": {
+            "label": "New Task name",
+            "placeholder": "Buy milk and eggs"
+          },
+          "description": {
+            "label": "New Description",
+            "placeholder": "1 litre of milk, a dozen eggs"
+          }
+        },
+        "button": {
+          "edit": "Edit"
+        },
+        "text": {
+          "title": "Edit Task"
+        },
+        "error": {
+          "requiredName": "Task name is required."
+        }
+      },
+      "archive": {
+        "button": {
+          "archive": "Archive",
+          "cancel": "Cancel"
+        },
+        "text": {
+          "title": "Archive List",
+          "description": "Are you sure you want to archive this list?"
+        }
+      },
+      "delete": {
+        "button": {
+          "delete": "Delete",
+          "cancel": "Cancel"
+        },
+        "text": {
+          "title": "Delete List",
+          "description": "Are you sure you want to delete this list? This action cannot be undone."
+        }
       }
+    },
+    "button": {
+      "newList": "New List",
+      "delete": "Delete",
+      "archive": "Archive",
+      "restore": "Restore",
+      "addTask": "Add Task",
+      "editTask": "Edit",
+      "showArchived": "Show Archived",
+      "sortByStatus": "Sort by Status",
+      "sortByName": "Sort by Name"
+    },
+    "text": {
+      "selectList": "Select a list to view tasks",
+      "noTask": "No tasks yet. Start by adding a new task!",
+      "noList": "No lists available. Create a new list to get started!",
+      "listCount": "{count} list | {count} lists",
+      "archived": "Archived"
     }
   }
 }

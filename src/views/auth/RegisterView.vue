@@ -81,9 +81,9 @@
         <div class="text-center mt-4">
           <p class="text-sm text-white">
             {{ t('register.form.text.haveAccount') }}
-            <router-link to="/login" class="font-medium underline hover:text-indigo-200">{{
+            <RouterLink to="/login" class="font-medium underline hover:text-indigo-200">{{
                 t('register.form.link.login')
-              }}</router-link>
+              }}</RouterLink>
           </p>
         </div>
         <p

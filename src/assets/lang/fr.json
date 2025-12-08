@@ -1,12 +1,15 @@
 {
   "navbar": {
     "home": "Accueil",
-    "lists": "Lists",
-    "about": "A propos",
+    "user": "Profil",
+    "lists": "Listes",
+    "about": "À propos",
     "contact": "Contact",
     "login": "Connexion",
     "logout": "Déconnexion",
-    "hello": "Bonjour, "
+    "hello": "Bonjour, ",
+    "switchLanguage": "Changer de langue",
+    "newLanguage": "Passer en {{lang}}"
   },
   "login": {
     "form": {
@@ -25,7 +28,7 @@
         "loggingIn": "Connexion en cours..."
       },
       "link": {
-        "forgotPassword": "Mot de passe oublié?",
+        "forgotPassword": "Mot de passe oublié ?",
         "register": "Inscrivez-vous ici",
         "rememberPassword": "Se souvenir"
       },
@@ -64,8 +67,8 @@
           "placeholder": "Mot de passe"
         },
         "confirmPassword": {
-          "label": "Confirmation du mot de passe",
-          "placeholder": "Confirmation du mot de passe"
+          "label": "Confirmer le mot de passe",
+          "placeholder": "Confirmer le mot de passe"
         }
       },
       "button": {
@@ -85,30 +88,25 @@
         "requiredEmail": "L'adresse e-mail est requise.",
         "requiredPassword": "Le mot de passe est requis.",
         "passwordMismatch": "Les mots de passe ne correspondent pas.",
-        "passwordTooShort": "Le mot de passe nécessite au moins 6 caractères."
+        "passwordTooShort": "Le mot de passe doit comporter au moins 6 caractères."
       }
     }
   },
   "lists": {
-    "sidebar": {
-      "createList": "Créer une liste",
-      "showArchived": "Montrer les listes archivées"
-    },
     "form": {
       "create": {
         "input": {
           "title": {
             "label": "Titre de la liste",
-            "placeholder": "Courses"
+            "placeholder": "Courses alimentaires"
           },
           "description": {
             "label": "Description",
-            "placeholder": "Courses de la semaine et articles divers"
+            "placeholder": "Courses hebdomadaires et essentiels"
           }
         },
         "button": {
-          "create": "Créer",
-          "creating": "Création..."
+          "create": "Créer la liste"
         },
         "text": {
           "title": "Créer une nouvelle liste"
@@ -116,7 +114,87 @@
         "error": {
           "requiredName": "Le nom de la liste est requis."
         }
+      },
+      "addTask": {
+        "input": {
+          "name": {
+            "label": "Nom de la tâche",
+            "placeholder": "Acheter du lait et des œufs"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "1 litre de lait, une douzaine d'œufs"
+          }
+        },
+        "button": {
+          "add": "Ajouter une tâche"
+        },
+        "text": {
+          "title": "Ajouter une nouvelle tâche"
+        },
+        "error": {
+          "requiredName": "Le nom de la tâche est requis."
+        }
+      },
+      "editTask": {
+        "input": {
+          "name": {
+            "label": "Nouveau nom de la tâche",
+            "placeholder": "Acheter du lait et des œufs"
+          },
+          "description": {
+            "label": "Nouvelle description",
+            "placeholder": "1 litre de lait, une douzaine d'œufs"
+          }
+        },
+        "button": {
+          "edit": "Modifier la tâche"
+        },
+        "text": {
+          "title": "Modifier la tâche"
+        },
+        "error": {
+          "requiredName": "Le nom de la tâche est requis."
+        }
+      },
+      "archive": {
+        "button": {
+          "archive": "Archiver",
+          "cancel": "Annuler"
+        },
+        "text": {
+          "title": "Archiver la liste",
+          "description": "Êtes-vous sûr de vouloir archiver cette liste ?"
+        }
+      },
+      "delete": {
+        "button": {
+          "delete": "Supprimer",
+          "cancel": "Annuler"
+        },
+        "text": {
+          "title": "Supprimer la liste",
+          "description": "Êtes-vous sûr de vouloir supprimer cette liste ? Cette action est irréversible."
+        }
       }
+    },
+    "button": {
+      "newList": "Nouvelle liste",
+      "delete": "Supprimer",
+      "archive": "Archiver",
+      "restore": "Restaurer",
+      "addTask": "Ajouter une tâche",
+      "editTask": "Modifier",
+      "showArchived": "Afficher les listes archivées",
+      "sortByStatus": "Trier par statut",
+      "sortByName": "Trier par nom"
+    },
+    "text": {
+      "selectList": "Sélectionnez une liste pour voir les tâches",
+      "noTask": "Aucune tâche pour l'instant. Commencez par en ajouter une !",
+      "noList": "Aucune liste disponible. Créez-en une pour commencer !",
+      "listCount": "{count} liste | {count} listes",
+      "archived": "Archivée"
     }
   }
 }

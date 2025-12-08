@@ -19,6 +19,13 @@
     </ul>
 
     <ul class="flex gap-2 items-center">
+      <li class="h-full">
+        <button
+          @click="switchLanguage"
+          class="inline-flex items-center rounded-md text-2xl font-medium transition-colors hover:cursor-pointer">
+          {{ lang === 'en' ? '🇫🇷' : '🇬🇧' }}
+        </button>
+      </li>
       <li>
         <span
           v-if="isLoggedIn"
@@ -52,7 +59,7 @@ import { useAuthStore } from '@/stores/auth.ts';
 import type { User } from '@/types';
 import router from '@/router';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const route = useRoute();
 const auth = useAuthStore();
 
@@ -62,11 +69,13 @@ const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'obj
 const tabs = [
   { label: t('navbar.home'), to: { name: 'home' } },
   { label: t('navbar.lists'), to: { name: 'lists' } },
+  { label: t('navbar.user'), to: { name: 'user' } },
   { label: t('navbar.about'), to: { name: 'about' } },
 ]
 
 const isLoggedIn: ComputedRef<boolean> = computed(() => auth.isLoggedIn);
 const user: ComputedRef<User | null> = computed(() => auth.user);
+const lang = computed(() => locale.value)
 
 const isActive = (to: NavTo) => {
   if (!to) return false;
@@ -76,6 +85,11 @@ const isActive = (to: NavTo) => {
     if ('path' in to && to.path != null) return route.path === String(to.path);
   }
   return false;
+}
+
+function switchLanguage(): void {
+  locale.value = locale.value === 'en' ? 'fr' : 'en'
+  localStorage.setItem('locale', locale.value)
 }
 
 function logout(): void {

@@ -1,5 +1,5 @@
 <template>
-  <Modal ref="modal" :title="t('lists.tasks.form.add.text.title')">
+  <Modal ref="modal" :title="t('lists.form.addTask.text.title')">
     <template #trigger>
       <slot />
     </template>
@@ -7,21 +7,21 @@
       <div class="space-y-4 flex flex-col">
         <InputField
           id="name"
-          :label="t('lists.tasks.form.add.input.name.label')"
-          :placeholder="t('lists.tasks.form.add.input.name.placeholder')"
+          :label="t('lists.form.addTask.input.name.label')"
+          :placeholder="t('lists.form.addTask.input.name.placeholder')"
           v-model="name"
         />
         <TextField
           id="description"
-          :label="t('lists.tasks.form.add.input.description.label')"
-          :placeholder="t('lists.tasks.form.add.input.description.placeholder')"
+          :label="t('lists.form.addTask.input.description.label')"
+          :placeholder="t('lists.form.addTask.input.description.placeholder')"
           v-model="description"
         />
         <button
           @click="submit"
           class="w-full rounded-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-medium px-4 py-2"
         >
-          {{ t('lists.tasks.form.add.button.add') }}
+          {{ t('lists.form.addTask.button.add') }}
         </button>
       </div>
     </template>

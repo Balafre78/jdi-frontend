@@ -1,6 +1,6 @@
 <template>
   <div
-    class="py-2 px-4 border border-gray-300 rounded-lg shadow-sm transition-shadow flex flex-row justify-between items-center"
+    class="py-2 px-4 border border-gray-300 rounded-lg shadow-sm transition-shadow flex flex-row justify-between items-center min-h-18"
   >
     <div class="flex flex-col">
       <h3 class="text-lg text-white font-semibold">{{ task.name }}</h3>
@@ -22,20 +22,20 @@ import type { Task, TaskStatus, UpdateTaskRequest } from '@/types'
 import StatusSwitcher from '@/components/list/task/StatusSwitcher.vue'
 import { ref } from 'vue'
 import EditTaskModal from '@/components/list/task/EditModal.vue'
-import { useTodolistStore } from '@/stores/todolist.ts'
 
-const todolistStore = useTodolistStore()
-
-const { task, selectedListId } = defineProps<{ task: Task; selectedListId: string }>()
+const { task } = defineProps<{ task: Task }>()
+const emit = defineEmits<{
+  (e: 'update', taskId: string, body: UpdateTaskRequest): void
+}>()
 
 const status = ref(task.status)
 
 async function updateStatus(newStatus: TaskStatus) {
   status.value = newStatus
-  await todolistStore.editTask(selectedListId, task.id, { status: newStatus })
+  emit('update', task.id, { status: newStatus })
 }
 
 async function onTaskUpdate(newTask: UpdateTaskRequest) {
-  await todolistStore.editTask(selectedListId, task.id, newTask)
+  emit('update', task.id, newTask)
 }
 </script>

@@ -27,6 +27,12 @@ const router = createRouter({
           meta: { requiresAuth: true }
         },
         {
+          path: 'user',
+          name: 'user',
+          component: () => import('@/views/main/UserView.vue'),
+          meta: { requiresAuth: true }
+        },
+        {
           path: ':pathMatch(.*)*',
           name: 'not-found',
           component: () => import('@/views/main/NotFoundView.vue'),
@@ -65,7 +71,7 @@ router.beforeEach((to, _from, next) => {
     next({ name: 'login', query: { redirect: to.fullPath } });
   } else if ((to.name === 'login' || to.name === 'register') && auth.isLoggedIn) {
     // Redirect logged-in users away from login/register pages
-    next('/');
+    next({ name: 'home' });
   } else {
     // Proceed as normal
     next();
