@@ -4,8 +4,10 @@
     aria-labelledby="navbar-heading"
   >
     <h2 id="navbar-heading" class="sr-only">Main navigation</h2>
-
     <ul class="flex gap-2 items-center">
+      <li>
+        <img src="@/assets/img/logo.png" alt="Logo" class="h-8 w-16 mr-4" />
+      </li>
       <li v-for="tab in tabs" :key="tab.label">
         <RouterLink
           :to="tab.to"
