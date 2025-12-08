@@ -24,7 +24,7 @@
         }
       },
       "button": {
-        "login": "Connexion",
+        "login": "Se connecter",
         "loggingIn": "Connexion en cours..."
       },
       "link": {
@@ -34,7 +34,7 @@
       },
       "text": {
         "title": "Connexion",
-        "noAccount": "Vous n'avez pas de compte ?"
+        "noAccount": "Vous n'avez encore pas de compte ?"
       },
       "error": {
         "invalidCredentials": "Adresse e-mail ou mot de passe invalide.",
@@ -98,18 +98,18 @@
         "input": {
           "title": {
             "label": "Titre de la liste",
-            "placeholder": "Courses alimentaires"
+            "placeholder": "Courses"
           },
           "description": {
             "label": "Description",
-            "placeholder": "Courses hebdomadaires et essentiels"
+            "placeholder": "Courses de la semaine et articles divers"
           }
         },
         "button": {
           "create": "Créer la liste"
         },
         "text": {
-          "title": "Créer une nouvelle liste"
+          "title": "Création d'une nouvelle liste"
         },
         "error": {
           "requiredName": "Le nom de la liste est requis."
@@ -127,10 +127,10 @@
           }
         },
         "button": {
-          "add": "Ajouter une tâche"
+          "add": "Ajouter la tâche"
         },
         "text": {
-          "title": "Ajouter une nouvelle tâche"
+          "title": "Ajout d'une nouvelle tâche"
         },
         "error": {
           "requiredName": "Le nom de la tâche est requis."
@@ -148,10 +148,10 @@
           }
         },
         "button": {
-          "edit": "Modifier la tâche"
+          "edit": "Modifier"
         },
         "text": {
-          "title": "Modifier la tâche"
+          "title": "Modification de la tâche"
         },
         "error": {
           "requiredName": "Le nom de la tâche est requis."
@@ -163,8 +163,8 @@
           "cancel": "Annuler"
         },
         "text": {
-          "title": "Archiver la liste",
-          "description": "Êtes-vous sûr de vouloir archiver cette liste ?"
+          "title": "Archivage de la liste",
+          "description": "Etes-vous sûr de vouloir archiver cette liste ?"
         }
       },
       "delete": {
@@ -173,8 +173,8 @@
           "cancel": "Annuler"
         },
         "text": {
-          "title": "Supprimer la liste",
-          "description": "Êtes-vous sûr de vouloir supprimer cette liste ? Cette action est irréversible."
+          "title": "Suppression de la liste",
+          "description": "Etes-vous sûr de vouloir supprimer cette liste ? Cette action est définitive."
         }
       }
     },
@@ -183,16 +183,16 @@
       "delete": "Supprimer",
       "archive": "Archiver",
       "restore": "Restaurer",
-      "addTask": "Ajouter une tâche",
-      "editTask": "Modifier",
+      "addTask": "Ajouter la tâche",
+      "editTask": "Modifier la tâche",
       "showArchived": "Afficher les listes archivées",
-      "sortByStatus": "Trier par statut",
-      "sortByName": "Trier par nom"
+      "sortByStatus": "Trier par Status",
+      "sortByName": "Trier par Nom"
     },
     "text": {
-      "selectList": "Sélectionnez une liste pour voir les tâches",
-      "noTask": "Aucune tâche pour l'instant. Commencez par en ajouter une !",
-      "noList": "Aucune liste disponible. Créez-en une pour commencer !",
+      "selectList": "Sélectionner une liste afin d'en voir les tâches",
+      "noTask": "Pas de tâches pour l'instant. Commencez par en ajouter une nouvelle",
+      "noList": "Aucune liste disponible. Créez-en une nouvelle pour commencer !",
       "listCount": "{count} liste | {count} listes",
       "archived": "Archivée"
     }

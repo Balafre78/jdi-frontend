@@ -116,7 +116,7 @@
       "addTask": {
         "input": {
           "name": {
-            "label": "Task name",
+            "label": "New Task name",
             "placeholder": "Buy milk and eggs"
           },
           "description": {
