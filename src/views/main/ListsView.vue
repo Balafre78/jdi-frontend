@@ -43,7 +43,14 @@
       <div v-if="selectedListId" class="space-y-4">
         <div class="flex items-center justify-between min-h-16">
           <div>
-            <h1 class="text-2xl font-bold text-white">{{ selectedList!.title }}</h1>
+            <h1 class="text-2xl text-white">
+              <span class="font-bold mr-2">{{ selectedList!.title }}</span>
+              <ListUpdateModal :list="selectedList!" @update="onUpdateList">
+                <button class="text-sm text-blue-400 hover:cursor-pointer hover:underline mr-4">
+                  {{ t('lists.button.edit') }}
+                </button>
+              </ListUpdateModal>
+            </h1>
             <p class="text-gray-300">{{ selectedList!.description }}</p>
           </div>
           <div>
@@ -100,6 +107,7 @@ import ListArchiveModal from "@/components/list/ArchiveModal.vue";
 import TaskAddModal from "@/components/list/task/AddModal.vue";
 import TaskItem from "@/components/list/task/Item.vue";
 import ListDeleteModal from "@/components/list/DeleteModal.vue";
+import ListUpdateModal from "@/components/list/UpdateModal.vue";
 import {
   faPlus,
   faTrash,
@@ -114,7 +122,7 @@ import type {
   CreateTodolistRequest,
   Task,
   Todolist,
-  UpdateTaskRequest
+  UpdateTaskRequest, UpdateTodolistRequest
 } from '@/types';
 import { computed, type ComputedRef, onMounted, ref, type Ref } from "vue";
 import {
@@ -125,6 +133,7 @@ import {
   updateTodolist
 } from "@/api/todolist.ts";
 import { useI18n } from "vue-i18n";
+
 
 const { t } = useI18n();
 
@@ -199,6 +208,11 @@ async function onDeleteList() {
   await deleteTodolist(selectedListId.value!)
   lists.value = await getTodolists();
   selectedListId.value = null;
+}
+
+async function onUpdateList(data: UpdateTodolistRequest) {
+  await updateTodolist(selectedListId.value!, data);
+  lists.value = await getTodolists();
 }
 
 async function onCreateTask(data: CreateTaskRequest) {

@@ -9,7 +9,7 @@
     <div class="flex flex-row items-center">
       <EditTaskModal :task="task" @update="onTaskUpdate">
         <button class="text-sm text-blue-400 hover:cursor-pointer hover:underline mr-4">
-          Edit
+          {{ t('lists.button.edit') }}
         </button>
       </EditTaskModal>
       <StatusSwitcher :status="status" @update:status="updateStatus" class="min-h-full" />
@@ -18,12 +18,16 @@
 </template>
 
 <script setup lang="ts">
-import type { Task, TaskStatus, UpdateTaskRequest } from '@/types'
-import StatusSwitcher from '@/components/list/task/StatusSwitcher.vue'
-import { ref } from 'vue'
-import EditTaskModal from '@/components/list/task/EditModal.vue'
+import StatusSwitcher from '@/components/list/task/StatusSwitcher.vue';
+import EditTaskModal from '@/components/list/task/EditModal.vue';
+import type { Task, TaskStatus, UpdateTaskRequest } from '@/types';
+import { ref } from 'vue';
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const { task } = defineProps<{ task: Task }>()
+
 const emit = defineEmits<{
   (e: 'update', taskId: string, body: UpdateTaskRequest): void
 }>()

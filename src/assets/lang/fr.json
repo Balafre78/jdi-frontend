@@ -115,6 +115,27 @@
           "requiredName": "Le nom de la liste est requis."
         }
       },
+      "update": {
+        "input": {
+          "title": {
+            "label": "Nouveau titre de la liste",
+            "placeholder": "Courses alimentaires"
+          },
+          "description": {
+            "label": "Nouvelle description",
+            "placeholder": "Courses hebdomadaires et essentiels"
+          }
+        },
+        "button": {
+          "update": "Mettre à jour la liste"
+        },
+        "text": {
+          "title": "Mettre à jour la liste"
+        },
+        "error": {
+          "requiredName": "Le nom de la liste est requis."
+        }
+      },
       "addTask": {
         "input": {
           "name": {
@@ -187,7 +208,8 @@
       "editTask": "Modifier",
       "showArchived": "Afficher les listes archivées",
       "sortByStatus": "Trier par statut",
-      "sortByName": "Trier par nom"
+      "sortByName": "Trier par nom",
+      "edit": "Modifier"
     },
     "text": {
       "selectList": "Sélectionnez une liste pour voir les tâches",
