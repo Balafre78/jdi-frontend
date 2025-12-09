@@ -6,7 +6,9 @@
     <h2 id="navbar-heading" class="sr-only">Main navigation</h2>
     <ul class="flex gap-2 items-center">
       <li>
-        <img src="@/assets/img/logo.png" alt="Logo" class="h-8 w-16 mr-4" />
+        <RouterLink :to="{ name: 'home' }">
+          <img src="@/assets/img/logo.png" alt="Logo" class="h-8 w-16 mr-4" />
+        </RouterLink>
       </li>
       <li v-for="tab in tabs" :key="tab.label">
         <RouterLink
@@ -15,7 +17,7 @@
           :class="isActive(tab.to) ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/3'"
           :aria-current="isActive(tab.to) ? 'page' : undefined"
         >
-          {{ tab.label }}
+          {{ t('navbar.' + tab.label ) }}
         </RouterLink>
       </li>
     </ul>
@@ -69,10 +71,10 @@ type NavTo = RouteLocationRaw | undefined
 const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null;
 
 const tabs = [
-  { label: t('navbar.home'), to: { name: 'home' } },
-  { label: t('navbar.lists'), to: { name: 'lists' } },
-  { label: t('navbar.user'), to: { name: 'user' } },
-  { label: t('navbar.about'), to: { name: 'about' } },
+  { label: 'home', to: { name: 'home' } },
+  { label: 'lists', to: { name: 'lists' } },
+  { label: 'user', to: { name: 'user' } },
+  { label: 'about', to: { name: 'about' } },
 ]
 
 const isLoggedIn: ComputedRef<boolean> = computed(() => auth.isLoggedIn);

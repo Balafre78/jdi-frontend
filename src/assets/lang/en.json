@@ -216,5 +216,26 @@
       "listCount": "{count} list | {count} lists",
       "archived": "Archived"
     }
+  },
+  "about": {
+    "text": {
+      "title": "About",
+      "description": "Welcome to our application! We are dedicated to providing you with the best experience possible. Our team is passionate about creating user-friendly and efficient solutions to help you manage your tasks and projects effectively.",
+      "team": "The Team"
+    }
+  },
+  "home": {
+    "text": {
+      "welcome": "Welcome to"
+    }
+  },
+  "user": {
+    "text": {
+      "profile": "User Profile",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "username": "Username",
+      "email": "Email Address"
+    }
   }
 }

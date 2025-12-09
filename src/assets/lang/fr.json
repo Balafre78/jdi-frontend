@@ -218,5 +218,26 @@
       "listCount": "{count} liste | {count} listes",
       "archived": "Archivée"
     }
+  },
+  "about": {
+    "text": {
+      "title": "À propos de ",
+      "description": "Cette application a été développée dans le but de faciliter la gestion des tâches et des listes de courses. Elle offre une interface conviviale pour créer, modifier et organiser vos listes, ainsi que pour suivre vos tâches quotidiennes. Nous espérons que cette application vous aidera à rester organisé et productif dans votre vie quotidienne.",
+      "team": "L'Équipe"
+    }
+  },
+  "home": {
+    "text": {
+      "welcome": "Bienvenue sur"
+    }
+  },
+  "user": {
+    "text": {
+      "profile": "Profil utilisateur",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "username": "Nom d'utilisateur",
+      "email": "Adresse e-mail"
+    }
   }
 }
